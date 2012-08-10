@@ -1,0 +1,8 @@
+{
+    "redis": {
+        "host": "localhost",
+        "port": false,
+        "db": 4
+    },
+    "cacheExpire": 86400
+}

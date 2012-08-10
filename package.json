@@ -1,0 +1,17 @@
+{
+  "name": "imap-autoconfig",
+  "version": "0.1.0",
+  "description": "Detect IMAP configuration for an e-mail address",
+  "author" : "Andris Reinman",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "fetch": "*",
+    "xml2object": "git://github.com/andris9/node-xml2object.git",
+    "inbox": "*",
+    "redis": "*"
+  }
+}
