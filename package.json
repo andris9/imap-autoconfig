@@ -1,6 +1,6 @@
 {
   "name": "imap-autoconfig",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Detect IMAP configuration for an e-mail address",
   "author" : "Andris Reinman",
   "main": "index.js",
