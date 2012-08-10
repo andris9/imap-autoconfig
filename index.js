@@ -46,7 +46,7 @@ IMAPSettingsDetector.prototype.detect = function(address, password, cached, call
                     }
                     
                     //console.log("Cache hit (expires " +replies[1].expires+ ")");
-                    return callback(replies[1]);
+                    return callback(null, replies[1]);
                 }
                 //console.log("Cache miss");
                 this._checkSettings(address, password, cacheKey, callback);
