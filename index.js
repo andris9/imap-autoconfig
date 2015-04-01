@@ -7,11 +7,14 @@ module.exports.createIMAPSettingsDetector = createIMAPSettingsDetector;
 
 function createIMAPSettingsDetector(config){
     config = config || defaultConfig;
-    config.disableCache = config.disableCache || false;
     config.redis = config.redis || defaultConfig.redis;
 
     if(typeof config.cacheExpire == "undefined"){
         config.cacheExpire = defaultConfig.cacheExpire;
+    }
+
+    if(typeof config.disableCache == "undefined"){
+        config.disableCache = defaultConfig.disableCache;
     }
 
     return new IMAPSettingsDetector(config);
