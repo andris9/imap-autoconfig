@@ -17,6 +17,7 @@ Create new autoconfig object
 Where config is an optional (if not set, predefined values will be used) 
 configuration object with following properties:
 
+  * **disableCache** - Disable caching & redis (defaults to false)
   * **redis** - Redis configuration object (host, port, db)
   * **cacheExpire** - Cache expiration in seconds for checked keys (set 0 for eternity, defaults to 24h)
 

@@ -7,6 +7,7 @@ module.exports.createIMAPSettingsDetector = createIMAPSettingsDetector;
 
 function createIMAPSettingsDetector(config){
     config = config || defaultConfig;
+    config.disableCache = config.disableCache || false;
     config.redis = config.redis || defaultConfig.redis;
 
     if(typeof config.cacheExpire == "undefined"){
@@ -18,7 +19,9 @@ function createIMAPSettingsDetector(config){
 
 function IMAPSettingsDetector(config){
     this.config = config;
-    this.redisClient = redis.createClient(config.redis.port, config.redis.host);
+    if (!this.config.disableCache) {
+      this.redisClient = redis.createClient(config.redis.port, config.redis.host);
+    }
 }
 
 IMAPSettingsDetector.prototype.detect = function(address, password, cached, callback){
@@ -31,7 +34,7 @@ IMAPSettingsDetector.prototype.detect = function(address, password, cached, call
 
     var cacheKey = "cache:autoconfig:"+sha1(address.split("@")[1] || "localhost");
 
-    if(cached){
+    if(!this.config.disableCache && cached){
         this.redisClient.multi().
             select(this.config.redis.db).
             hgetall(cacheKey).
@@ -68,7 +71,7 @@ IMAPSettingsDetector.prototype._checkSettings = function(address, password, cach
         }
 
         // overwrite cache only with a valid user information
-        if(settings.user){
+        if(!this.config.disableCache && settings.user){
             this.redisClient.multi().
                 select(this.config.redis.db).
                 hmset(cacheKey, settings).
