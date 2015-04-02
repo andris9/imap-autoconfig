@@ -1,4 +1,5 @@
 {
+    "disableCache": false,
     "redis": {
         "host": "localhost",
         "port": false,
